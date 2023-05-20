@@ -2,7 +2,9 @@
 const express = require("express");
 const mongoose= require("mongoose");
 
+
 // internal import
+const todoHandler = require("./routeHandler/todoHandler");
 
 // express app initialization
 const app = express();
@@ -18,7 +20,7 @@ mongoose.connect("mongodb://localhost/todos", {
     .catch((err)=>console.log(err));
 
 // application routes
-
+app.use("/todo", todoHandler);
 
 // default error handler
 function errorHandler(err, req, res, next){
