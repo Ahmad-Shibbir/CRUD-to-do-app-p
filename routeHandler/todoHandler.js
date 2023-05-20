@@ -1,5 +1,8 @@
 const express = require("express");
+const mongoose = require("mongoose");
 const router = express.Router();
+const todoScema = require("../schemas/todoSchemas");
+const Todo = new mongoose.model("Todo", todoScema);
 
 // GET SINGLE TODO
 router.get('/:id', async(req, res)=>{
@@ -29,7 +32,7 @@ router.post('/:id', async(req, res)=>{
 
 
 // DELET SINGLE TODO
-router.delet('/:id', async(req, res)=>{
+router.delete('/:id', async(req, res)=>{
 
 });
 
