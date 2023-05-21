@@ -21,7 +21,7 @@ router.get('/:id', async(req, res)=>{
 
 });
 
-// GET ALL TODO
+// GET ALL active status TODO
 router.get('/', async(req, res)=>{
     await Todo.find({ status:"active"})
     .then((data) => {
@@ -111,6 +111,17 @@ router.post('/:id', async(req, res)=>{
 
 // DELET SINGLE TODO
 router.delete('/:id', async(req, res)=>{
+    await Todo.deleteOne({ _id: req.params.id})
+    .then(() => {
+        res.status(200).json({
+            message: 'pariculer id data deleted successfully!',
+        });
+    })
+    .catch(() => {
+        res.status(500).json({
+            err: 'Something were wrong on server side!',
+        });
+    });
 
 });
 
