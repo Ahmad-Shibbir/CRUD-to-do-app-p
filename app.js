@@ -8,7 +8,7 @@ const todoHandler = require("./routeHandler/todoHandler");
 
 // express app initialization
 const app = express();
-app.use(express.json());
+app.use(express.json())
 
 // database connection with mongose 
 mongoose.connect("mongodb://localhost/todos", {
