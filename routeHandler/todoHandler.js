@@ -6,11 +6,35 @@ const Todo = new mongoose.model("Todo", todoScema);
 
 // GET SINGLE TODO
 router.get('/:id', async(req, res)=>{
+    await Todo.find({ _id: req.params.id})
+    .then((data) => {
+        res.status(200).json({
+            result: data,
+            message: 'particuler id data get successfully!',
+        });
+    })
+    .catch(() => {
+        res.status(500).json({
+            err: 'Something were wrong on server side!',
+        });
+    });
 
 });
 
 // GET ALL TODO
 router.get('/', async(req, res)=>{
+    await Todo.find({ status:"active"})
+    .then((data) => {
+        res.status(200).json({
+            result: data,
+            message: 'status active data get successfully!',
+        });
+    })
+    .catch(() => {
+        res.status(500).json({
+            err: 'Something were wrong on server side!',
+        });
+    });
     
 
 });
