@@ -64,10 +64,24 @@ router.post('/all', async(req, res)=>{
         }
   );
 
-  
-// PUT TODO
-router.post('/:id', async(req, res)=>{
 
+// PUT (update) TODO
+router.post('/:id', async(req, res)=>{
+    await Todo.updateOne({_id: req.params.id},{
+        $set:{
+            status:"inactive"
+        }
+    })
+    .then(() => {
+        res.status(200).json({
+            message: 'Todo updated successfully!',
+        });
+    })
+    .catch(() => {
+        res.status(500).json({
+            err: 'Something were wrong on server side!',
+        });
+    });
 });
 
 
